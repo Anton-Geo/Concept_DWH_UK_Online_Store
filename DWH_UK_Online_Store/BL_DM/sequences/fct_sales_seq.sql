@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS "BL_DM".fct_sales_seq;

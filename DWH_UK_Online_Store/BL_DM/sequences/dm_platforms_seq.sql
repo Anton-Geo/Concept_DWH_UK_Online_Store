@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS "BL_DM".dm_platforms_seq;
