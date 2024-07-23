@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS "BL_CL".wrk_product_subcategory_seq;

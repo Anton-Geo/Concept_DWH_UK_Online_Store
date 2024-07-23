@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS "BL_CL"."WRK_CUSTOMERS"(
+    "CUSTOMER_SURR_ID" BIGINT        PRIMARY KEY,
+    "CUSTOMER_SRC_ID"  VARCHAR(255)  NOT NULL,
+    "BUS_CUSTOMER_ID"  VARCHAR(255)  NOT NULL,
+    "CUSTOMER_NAME"    VARCHAR(255)  NOT NULL,
+    "CUSTOMER_SURNAME" VARCHAR(255)  NOT NULL,
+    "PHONE_NUM"        NUMERIC(11,0) NOT NULL,
+    "COUNTRY_NAME"     VARCHAR(255)  NOT NULL,
+    "SOURCE_SYSTEM"    VARCHAR(255)  NOT NULL,
+    "SOURCE_ENTITY"    VARCHAR(255)  NOT NULL,
+    "TA_INSERT_DT"     TIMESTAMP     NOT NULL,
+    "TA_UPDATE_DT"     TIMESTAMP     NOT NULL
+);
+
+CREATE INDEX btree_wrk_customers_src_id_idx
+    ON "BL_CL"."WRK_CUSTOMERS" ("CUSTOMER_NAME");
+   
+-- Trigger for WRK_CUSTOMERS:
+DO $$ 
+BEGIN 
+    IF NOT EXISTS (SELECT 1 
+                   FROM pg_trigger 
+                   WHERE tgname = 'wrk_customers_ta_update_dt') THEN 
+        CREATE TRIGGER wrk_customers_ta_update_dt
+        BEFORE INSERT OR UPDATE ON "BL_CL"."WRK_CUSTOMERS"
+        FOR EACH ROW
+        EXECUTE FUNCTION "BL_CL".trigger_ta_update_dt();
+    END IF;
+END $$;

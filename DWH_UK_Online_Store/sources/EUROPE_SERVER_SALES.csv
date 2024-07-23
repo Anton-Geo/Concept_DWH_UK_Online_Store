@@ -1,0 +1,1 @@
+InvoiceNo,InvoiceDate,CustomerID,CustomerName,CustomerSurname,PhoneNumber,Country,StockCode,ProductName,Description,ProductCategory,MainProductCategory,UnitCost,UnitPrice,Quantity,SalesPlatform,PaymentMethod,InsertDateProduct,EndDateProduct

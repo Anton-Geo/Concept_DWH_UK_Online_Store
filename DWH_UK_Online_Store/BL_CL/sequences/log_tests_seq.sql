@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS "BL_CL".log_tests_seq;
